@@ -12,6 +12,8 @@ notifications:
     on_success: change
     on_failure: always
 before_script:
+  - sudo bash -c 'echo "deb http://www.yade-dem.org/packages/ trusty/" >> /etc/apt/sources.list'
+  - wget -O - http://www.yade-dem.org/packages/yadedev_pub.gpg | sudo apt-key add -
   - sudo apt-get -qq update
   - sudo apt-get install cmake git freeglut3-dev libloki-dev libboost-all-dev fakeroot dpkg-dev build-essential g++ python-dev ipython python-matplotlib libsqlite3-dev python-numpy python-tk gnuplot libgts-dev python-pygraphviz libvtk6-dev python-numpy libeigen3-dev python-xlib python-qt4 pyqt4-dev-tools gtk2-engines-pixbuf python-argparse libqglviewer-dev python-imaging libjs-jquery python-sphinx python-git python-bibtex libxmu-dev libxi-dev libcgal-dev help2man libbz2-dev zlib1g-dev python-minieigen
   - mkdir build
