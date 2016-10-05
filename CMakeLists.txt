@@ -84,6 +84,14 @@ ELSE (DEBUG)
 ENDIF (DEBUG)
 
 #===========================================================
+# Configure CCache if available
+find_program(CCACHE_FOUND ccache)
+if(CCACHE_FOUND)
+	set_property(GLOBAL PROPERTY RULE_LAUNCH_COMPILE ccache)
+	set_property(GLOBAL PROPERTY RULE_LAUNCH_LINK ccache)
+endif(CCACHE_FOUND)
+
+#===========================================================
 # Add possibility to use local boost installation (e.g. -DLocalBoost=1.46.1)
 
 IF ( NOT LocalBoost )
