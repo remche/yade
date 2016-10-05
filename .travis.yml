@@ -19,7 +19,7 @@ before_script:
   - mkdir build
   - cd build
   - export PATH=/usr/bin:$PATH
-  - cmake -DCMAKE_CXX_FLAGS=-frounding-math -DCMAKE_INSTALL_PREFIX=./../inst -DSUFFIX=-trunk ..
+  - cmake -DUSE_QT5=0 -DCMAKE_CXX_FLAGS=-frounding-math -DCMAKE_INSTALL_PREFIX=./../inst -DSUFFIX=-trunk ..
 script:
   - make
   - make install
