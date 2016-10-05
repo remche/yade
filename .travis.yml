@@ -4,11 +4,11 @@ compiler:
   - gcc
 virtualenv:
     system_site_packages: true
+      - "2.7_with_system_site_packages"
 notifications:
   email:
     recipients:
-      - yade-dev@lists.launchpad.net
-      - gladk@debian.org
+      - remi.cailletaud@3sr-grenoble.fr
     on_success: change
     on_failure: always
 before_script:
