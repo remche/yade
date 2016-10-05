@@ -2,9 +2,7 @@ language: cpp
 dist: trusty
 compiler:
   - gcc
-#virtualenv:
-#    system_site_packages: true
-#      - "2.7_with_system_site_packages"
+cache: ccache
 notifications:
   email:
     recipients:
