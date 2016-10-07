@@ -19,7 +19,7 @@ before_script:
   - export PATH=/usr/bin:$PATH
   - cmake -DUSE_QT5=0 -DCMAKE_CXX_FLAGS=-frounding-math -DCMAKE_INSTALL_PREFIX=./../inst -DSUFFIX=-trunk ..
 script:
-  - ../scripts/travis-command-wrapper.py make -j 2
+  - ../scripts/travis-command-wrapper.py "make -j 2"
   - make install
   - ./../inst/bin/yade-trunk --test
   - ./../inst/bin/yade-trunk --check
