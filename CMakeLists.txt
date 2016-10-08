@@ -54,10 +54,16 @@ INCLUDE_DIRECTORIES (${CMAKE_SOURCE_DIR})
 # Can be removed later, if gcc fixes its regression
 # Taken from http://stackoverflow.com/questions/4058565/check-gcc-minor-in-cmake
 
+find_program(CCACHE_FOUND ccache)
 EXECUTE_PROCESS(COMMAND ${CMAKE_C_COMPILER} -dumpversion OUTPUT_VARIABLE GCC_VERSION)
 IF (GCC_VERSION VERSION_GREATER 4.8 OR GCC_VERSION VERSION_EQUAL 4.8)
-  MESSAGE(STATUS "GCC Version >= 4.8. Adding -ftrack-macro-expansion=0 and -save-temps")
-  ADD_DEFINITIONS("-ftrack-macro-expansion=0 -save-temps")
+  IF(CCACHE_FOUND)
+    MESSAGE(STATUS "GCC Version >= 4.8.and ccache Adding -ftrack-macro-expansion=0")
+    ADD_DEFINITIONS("-ftrack-macro-expansion=0")
+  ELSE()
+    MESSAGE(STATUS "GCC Version >= 4.8. Adding -ftrack-macro-expansion=0 and -save-temps")
+    ADD_DEFINITIONS("-ftrack-macro-expansion=0 -save-temps")
+  ENDIF(CCACHE_FOUND)
 ENDIF()
 
 #===========================================================
@@ -85,12 +91,11 @@ ENDIF (DEBUG)
 
 #===========================================================
 # Configure CCache if available
-find_program(CCACHE_FOUND ccache)
-if(CCACHE_FOUND)
+IF(CCACHE_FOUND)
 	set_property(GLOBAL PROPERTY RULE_LAUNCH_COMPILE ccache)
 	set_property(GLOBAL PROPERTY RULE_LAUNCH_LINK ccache)
 	MESSAGE("FOUND CCACHE")
-endif(CCACHE_FOUND)
+ENDIF(CCACHE_FOUND)
 
 #===========================================================
 # Add possibility to use local boost installation (e.g. -DLocalBoost=1.46.1)
