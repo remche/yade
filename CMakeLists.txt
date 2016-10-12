@@ -87,7 +87,6 @@ IF (DEBUG)
   ADD_DEFINITIONS("-DYADE_DEBUG -g")
 ELSE (DEBUG)
   ADD_DEFINITIONS("-DNDEBUG")
-  SET(CMAKE_BUILD_TYPE Release)
 ENDIF (DEBUG)
 
 #===========================================================
